@@ -1,18 +1,15 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import util
 
 app = Flask(__name__)
+CORS(app)
 
-
-@app.route('/hello', methods=['GET'])
-def hello():
-    return "Hello!"
 
 @app.route('/get_locations', methods=['GET'])
 def get_locations():
     locations = util.get_locations()
     res = jsonify([location.title() for location in locations])
-    res.headers.add('Access-Control-Allow-Origin', '*')
 
     return res
 
@@ -29,8 +26,6 @@ def get_predicted_price():
     res = jsonify({
         "price": price
     })
-    res.headers.add('Access-Control-Allow-Origin', '*')
-
 
     return res
 
