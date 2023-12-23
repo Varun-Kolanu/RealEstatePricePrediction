@@ -4,6 +4,8 @@ import util
 
 app = Flask(__name__)
 CORS(app)
+print("Starting Flask App...")
+util.load_saved_artifacts()
 
 
 @app.route('/get_locations', methods=['GET'])
@@ -30,6 +32,4 @@ def get_predicted_price():
     return res
 
 if __name__ == '__main__':
-    print("Starting Flask App...")
-    util.load_saved_artifacts()
     app.run()
